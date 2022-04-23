@@ -1,54 +1,88 @@
-const area = Number(
-  prompt(
-    "Qual área você deseja seguir?\nDigite 1 para Frontend\nDigite 2 para backend"
-  )
-);
-
+let area;
 let framework;
 let linguagem;
+let caminho;
+let choice;
+const tecnologias = [];
 
-if (area === 1) {
-  framework = Number(
-    prompt(
-      "Qual framework você deseja aprender?\nDigite 1 para React\nDigite 2 para Vue"
-    )
-  );
-} else if (area === 2) {
-  linguagem = Number(
-    prompt(
-      "Qual framework você deseja aprender?\nDigite 1 para C#\nDigite 2 para Java"
-    )
-  );
-} else {
-  alert("Escolha inválida");
-}
-
-const especializar = Number(
+choice = Number(
   prompt(
-    "Você deseja se especializar na área escolhida\nou se tornar FullStack?\nDigite 1 para especialização\nDigite 2 para FullStack"
+    "Qual área você deseja seguir?\nDigite 1 para Frontend\nDigite 2 para Backend"
   )
 );
 
-if (especializar === 1) {
-  if (area === 1) {
-    if (framework === 1) {
-      alert(
-        "Muito bacana você desejar seguir para a área de frontend, estudando React e mais importante ainda, com foco em se especializar! Você será um desenvolvedor e tanto!"
-      );
+function main() {
+  if (choice === 1) {
+    area = "Frontend";
+    choice = Number(
+      prompt(
+        "Qual framework você deseja aprender?\nDigite 1 para React\nDigite 2 para Vue"
+      )
+    );
+    if (choice === 1) {
+      framework = "React";
+    } else if (choice === 2) {
+      framework = "Vue";
     } else {
-      alert(
-        "Muito bacana você desejar seguir para a área de frontend, estudando Vue e mais importante ainda, com foco em se especializar! Você será um desenvolvedor e tanto!"
-      );
+      alert("Opção inválida");
+      return;
+    }
+  } else if (choice === 2) {
+    area = "Backend";
+    choice = Number(
+      prompt(
+        "Qual linguagem você deseja aprender?\nDigite 1 para C#\nDigite 2 para Java"
+      )
+    );
+    if (choice === 1) {
+      linguagem = "C#";
+    } else if (choice === 2) {
+      linguagem = "Java";
+    } else {
+      alert("Opção inválida");
+      return;
     }
   } else {
-    if (linguagem === 1) {
-      alert(
-        "Muito bacana você desejar seguir para a área de backend, estudando C# e mais importante ainda, com foco em se especializar! Você será um desenvolvedor e tanto!"
-      );
-    } else {
-      alert(
-        "Muito bacana você desejar seguir para a área de backend, estudando Java e mais importante ainda, com foco em se especializar! Você será um desenvolvedor e tanto!"
-      );
-    }
+    alert("Opção inválida");
+    return;
   }
+
+  choice = Number(
+    prompt(
+      "O que você deseja fazer?\nDigite 1 para especialização na área escolhida\nDigite 2 para se desenvolver como FullStack"
+    )
+  );
+
+  if (choice === 1) {
+    caminho = "especializar na área";
+  } else if (choice === 2) {
+    caminho = "desenvolver FullStack";
+  } else {
+    alert("Opção inválida");
+    return;
+  }
+
+  if (area === "Frontend") {
+    alert(
+      `Muito bacana que você tenha escolhida a área de ${area}.\nEscolher aprender o framework ${framework} foi uma boa escolha!\nE mais importante, a escolha de se ${caminho} foi incrível!`
+    );
+  } else {
+    alert(
+      `Muito bacana que você tenha escolhida a área de ${area}.\nEscolher aprender a linguagem ${linguagem} foi uma boa escolha!\nE mais importante, a escolha de se ${caminho} foi incrível!`
+    );
+  }
+
+  do {
+    tecnologias.push(
+      prompt("Diga mais uma tecnologia que você deseja conhecer: ")
+    );
+    choice = Number(
+      prompt(
+        "Deseja conhecer mais alguma tecnologia?\nDigite 0 caso não queira"
+      )
+    );
+  } while (choice !== 0);
+
+  console.log(tecnologias);
 }
+main();
